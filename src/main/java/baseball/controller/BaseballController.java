@@ -3,7 +3,6 @@ package baseball.controller;
 import baseball.constants.GameStatus;
 import baseball.dto.input.BaseballDto;
 import baseball.dto.input.ReplayDto;
-import baseball.dto.output.ResultMessageDto;
 import baseball.model.Baseball;
 import baseball.model.BaseballGameResult;
 import baseball.service.BaseballService;
@@ -55,8 +54,7 @@ public class BaseballController {
     }
 
     private void showGameResult(BaseballGameResult result) {
-        ResultMessageDto resultMessageDto = new ResultMessageDto(result);
-        outputView.showGameResult(resultMessageDto);
+        outputView.showGameResult(result.getResultMessage());
     }
 
     private boolean askReplayChoice() {

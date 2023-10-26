@@ -1,5 +1,6 @@
 package baseball.model;
 
+import baseball.constants.Message;
 import java.util.Arrays;
 import java.util.EnumMap;
 
@@ -30,5 +31,37 @@ public class BaseballGameResult {
         int strikeCount = resultTypeCounts.get(BaseballGameResultType.STRIKE);
 
         return strikeCount == Baseball.LENGTH;
+    }
+
+    public boolean isNothing() {
+        int ballCount = resultTypeCounts.get(BaseballGameResultType.BALL);
+        int strikeCount = resultTypeCounts.get(BaseballGameResultType.STRIKE);
+
+        return ballCount == 0 && strikeCount == 0;
+    }
+
+    public String getResultMessage() {
+        int strikeCount = resultTypeCounts.get(BaseballGameResultType.STRIKE);
+        int ballCount = resultTypeCounts.get(BaseballGameResultType.BALL);
+
+        if (isNothing()) {
+            return Message.NOTHING;
+        }
+
+        return createResultMessage(ballCount, strikeCount);
+    }
+
+    private String createResultMessage(int ballCount, int strikeCount) {
+        StringBuilder sb = new StringBuilder();
+
+        if (ballCount > 0) {
+            sb.append(String.format("%d%s ", ballCount, Message.BALL));
+        }
+        if (strikeCount > 0) {
+            sb.append(String.format("%d%s", strikeCount, Message.STRIKE));
+        }
+
+        return sb.toString()
+                .trim();
     }
 }
