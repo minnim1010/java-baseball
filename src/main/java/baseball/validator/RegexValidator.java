@@ -1,6 +1,5 @@
 package baseball.validator;
 
-import baseball.constants.InputPattern;
 import java.util.regex.Pattern;
 
 public class RegexValidator {
@@ -10,11 +9,11 @@ public class RegexValidator {
         throw new AssertionError();
     }
 
-    public static void validate(InputPattern inputPattern, String string) {
-        Pattern pattern = inputPattern.getPattern();
+    public static void validate(ValidInputPattern validInputPattern, String string) {
+        Pattern pattern = validInputPattern.getPattern();
 
         if (!pattern.matcher(string).matches()) {
-            throw new IllegalArgumentException(inputPattern.getErrorMessage());
+            throw new IllegalArgumentException(validInputPattern.getErrorMessage());
         }
     }
 }

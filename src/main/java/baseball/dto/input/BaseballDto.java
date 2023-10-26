@@ -1,10 +1,10 @@
 package baseball.dto.input;
 
-import baseball.constants.InputPattern;
 import baseball.model.Baseball;
 import baseball.model.BaseballNumber;
 import baseball.validator.InputValidator;
 import baseball.validator.RegexValidator;
+import baseball.validator.ValidInputPattern;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +12,7 @@ public record BaseballDto(String baseball) {
 
     public BaseballDto {
         InputValidator.validate(baseball);
-        RegexValidator.validate(InputPattern.BASEBALL, baseball);
+        RegexValidator.validate(ValidInputPattern.BASEBALL, baseball);
     }
 
     public Baseball toBaseball() {
