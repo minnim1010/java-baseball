@@ -27,7 +27,7 @@ import org.mockito.MockedStatic;
 class BaseballServiceTest {
 
     private static MockedStatic<Randoms> randoms;
-    private final BaseballService baseballService = new BaseballService();
+    private final BaseballService baseballService = BaseballService.getInstance();
 
     @BeforeAll
     static void beforeAll() {

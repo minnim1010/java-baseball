@@ -9,6 +9,14 @@ import java.util.List;
 import java.util.Set;
 
 public class BaseballService {
+    public static final BaseballService INSTANCE = new BaseballService();
+
+    private BaseballService() {
+    }
+
+    public static BaseballService getInstance() {
+        return INSTANCE;
+    }
 
     public Baseball createAnswerBaseball() {
         Set<Integer> uniqueNumbers = getUniqueNumbers();
