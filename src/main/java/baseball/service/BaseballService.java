@@ -44,6 +44,6 @@ public class BaseballService {
     }
 
     public GameResult calculateResult(final Baseball answer, final Baseball guess) {
-        return answer.match(guess);
+        return answer.compareTo(guess);
     }
 }

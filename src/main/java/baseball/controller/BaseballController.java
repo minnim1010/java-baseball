@@ -23,10 +23,10 @@ public class BaseballController {
     public void run() {
         baseballView.startGame();
 
-        boolean play = true;
-        while (play) {
+        boolean isPlaying = true;
+        while (isPlaying) {
             playGame();
-            play = askReplayChoice();
+            isPlaying = askForReplay();
         }
     }
 
@@ -57,7 +57,7 @@ public class BaseballController {
         baseballView.showGameResult(gameResultDto);
     }
 
-    private boolean askReplayChoice() {
+    private boolean askForReplay() {
         ReplayChoiceDto replayChoiceDto = baseballView.replayGame();
 
         return GameStatus.isReplay(replayChoiceDto.replayChoice());

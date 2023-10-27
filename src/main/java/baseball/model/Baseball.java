@@ -24,7 +24,7 @@ public class Baseball {
         return baseballNumbers;
     }
 
-    public GameResult match(final Baseball compare) {
+    public GameResult compareTo(final Baseball compare) {
         GameResult result = new GameResult();
 
         List<BaseballNumber> compareNumbers = compare.getBaseballNumbers();
