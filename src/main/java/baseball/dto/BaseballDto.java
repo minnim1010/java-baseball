@@ -1,18 +1,27 @@
 package baseball.dto;
 
+import baseball.common.exception.ErrorMessage;
 import baseball.model.Baseball;
 import baseball.model.BaseballNumber;
 import baseball.validator.InputValidator;
-import baseball.validator.RegexValidator;
-import baseball.validator.constants.ValidInputPattern;
+import baseball.validator.constants.InputFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public record BaseballDto(String baseball) {
 
     public BaseballDto {
         InputValidator.validate(baseball);
-        RegexValidator.validate(ValidInputPattern.BASEBALL, baseball);
+        validateFormat(baseball);
+    }
+
+    private static void validateFormat(String baseball) {
+        Pattern pattern = InputFormat.BASEBALL.getPattern();
+
+        if (!pattern.matcher(baseball).matches()) {
+            throw ErrorMessage.INVALID_BASEBALL_INPUT.getException();
+        }
     }
 
     public Baseball toBaseball() {

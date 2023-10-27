@@ -3,13 +3,13 @@ package baseball.dto.input;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import baseball.dto.ReplayDto;
+import baseball.dto.ReplayChoiceDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class ReplayDtoTest {
+class ReplayChoiceDtoTest {
 
     @Nested
     @DisplayName("입력 받은 게임 재시작 여부의 유효성 검증 시")
@@ -21,10 +21,10 @@ class ReplayDtoTest {
         void success(String input) {
             //given
             //when
-            ReplayDto replayDto = new ReplayDto(input);
+            ReplayChoiceDto replayChoiceDto = new ReplayChoiceDto(input);
 
             //then
-            assertThat(replayDto.replay()).isEqualTo(input);
+            assertThat(replayChoiceDto.replayChoice()).isEqualTo(input);
         }
 
         @DisplayName("1이나 2가 아니라면 예외를 발생시킨다.")
@@ -33,7 +33,7 @@ class ReplayDtoTest {
         void fail_InvalidCharacter(String input) {
             //given
             //when then
-            assertThatThrownBy(() -> new ReplayDto(input))
+            assertThatThrownBy(() -> new ReplayChoiceDto(input))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

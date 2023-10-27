@@ -1,6 +1,6 @@
 package baseball.model;
 
-import baseball.validator.BaseballNumberValidator;
+import baseball.validator.BaseballValidator;
 
 public class BaseballNumber {
 
@@ -10,7 +10,7 @@ public class BaseballNumber {
     private final int number;
 
     public BaseballNumber(int number) {
-        BaseballNumberValidator.validate(number, MIN_VALUE, MAX_VALUE);
+        BaseballValidator.validateWithinBounds(number);
 
         this.number = number;
     }

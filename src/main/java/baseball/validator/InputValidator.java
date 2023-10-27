@@ -1,8 +1,8 @@
 package baseball.validator;
 
-public class InputValidator {
+import baseball.common.exception.ErrorMessage;
 
-    private static final String INVALID_INPUT_MESSAGE = "올바른 입력이 아닙니다.";
+public class InputValidator {
 
     //인스턴스화 방지
     private InputValidator() {
@@ -11,7 +11,7 @@ public class InputValidator {
     
     public static void validate(String message) {
         if (isBlank(message)) {
-            throw new IllegalArgumentException(INVALID_INPUT_MESSAGE);
+            throw ErrorMessage.BLANK_INPUT.getException();
         }
     }
 

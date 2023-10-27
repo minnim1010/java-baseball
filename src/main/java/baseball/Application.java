@@ -10,8 +10,6 @@ public class Application {
         final BaseballController baseballController = BaseballConfig.getBaseballController();
         try {
             baseballController.run();
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e.getMessage());
         } finally {
             Console.close();
         }

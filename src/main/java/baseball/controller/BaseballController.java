@@ -1,7 +1,7 @@
 package baseball.controller;
 
 import baseball.dto.BaseballDto;
-import baseball.dto.ReplayDto;
+import baseball.dto.ReplayChoiceDto;
 import baseball.model.Baseball;
 import baseball.model.BaseballGameResult;
 import baseball.model.GameStatus;
@@ -55,8 +55,8 @@ public class BaseballController {
     }
 
     private boolean askReplayChoice() {
-        ReplayDto replayDto = baseballView.replayGame();
-        GameStatus gameStatus = GameStatus.from(replayDto.replay());
+        ReplayChoiceDto replayChoiceDto = baseballView.replayGame();
+        GameStatus gameStatus = GameStatus.from(replayChoiceDto.replayChoice());
 
         return gameStatus.equals(GameStatus.REPLAY);
     }

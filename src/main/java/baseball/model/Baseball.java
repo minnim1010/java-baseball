@@ -10,12 +10,13 @@ public class Baseball {
     private final List<BaseballNumber> baseballNumbers;
 
     private Baseball(List<BaseballNumber> baseballNumbers) {
+        BaseballValidator.validateLength(baseballNumbers);
+        BaseballValidator.validateUnique(baseballNumbers);
+
         this.baseballNumbers = baseballNumbers.stream().toList();
     }
 
     public static Baseball from(List<BaseballNumber> baseballNumbers) {
-        BaseballValidator.validate(baseballNumbers);
-
         return new Baseball(baseballNumbers);
     }
 

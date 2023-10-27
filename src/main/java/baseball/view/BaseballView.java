@@ -1,7 +1,7 @@
 package baseball.view;
 
 import baseball.dto.BaseballDto;
-import baseball.dto.ReplayDto;
+import baseball.dto.ReplayChoiceDto;
 import baseball.io.InputReader;
 import baseball.io.OutputWriter;
 import baseball.view.constants.Message;
@@ -36,11 +36,11 @@ public class BaseballView {
         return new BaseballDto(input);
     }
 
-    public ReplayDto replayGame() {
+    public ReplayChoiceDto replayGame() {
         writer.writeLine(Message.INPUT_REPLAY);
 
         String input = reader.readLine();
-        return new ReplayDto(input);
+        return new ReplayChoiceDto(input);
     }
 
     public void startGame() {
