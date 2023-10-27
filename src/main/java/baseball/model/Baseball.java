@@ -2,6 +2,7 @@ package baseball.model;
 
 import baseball.validator.BaseballValidator;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Baseball {
 
@@ -24,34 +25,34 @@ public class Baseball {
         return baseballNumbers;
     }
 
-    public GameResult compareTo(final Baseball compare) {
-        GameResult result = new GameResult();
-
-        List<BaseballNumber> compareNumbers = compare.getBaseballNumbers();
-        for (int i = 0; i < Baseball.LENGTH; i++) {
-            BaseballNumber number = baseballNumbers.get(i);
-            BaseballNumber compareNumber = compareNumbers.get(i);
-
-            addResult(result, number, compareNumber);
-        }
-
-        return result;
+    public BaseballNumber get(final int index) {
+        return baseballNumbers.get(index);
     }
 
-    private void addResult(GameResult result, BaseballNumber number, BaseballNumber compareNumber) {
-        if (isStrike(number, compareNumber)) {
-            result.add(BaseballGameResultType.STRIKE);
-        } else if (isBall(compareNumber)) {
-            result.add(BaseballGameResultType.BALL);
-        }
+    public boolean contains(final BaseballNumber baseballNumber) {
+        return baseballNumbers.contains(baseballNumber);
     }
 
-    private boolean isStrike(BaseballNumber number, BaseballNumber compareNumber) {
-        return number.equals(compareNumber);
+    public int getStrikeCount(final Baseball compare) {
+        return (int) IntStream.range(0, Baseball.LENGTH)
+                .filter(i -> isStrike(compare, i))
+                .count();
     }
 
-    private boolean isBall(BaseballNumber compareNumber) {
-        return baseballNumbers.contains(compareNumber);
+    private boolean isStrike(Baseball compare, int idx) {
+        return this.get(idx).equals(compare.get(idx));
+    }
+
+    public int getBallCount(final Baseball compare) {
+        return (int) IntStream.range(0, Baseball.LENGTH)
+                .filter(i -> isBall(compare, i))
+                .count();
+    }
+
+    private boolean isBall(Baseball compare, int idx) {
+        BaseballNumber compareNumber = compare.get(idx);
+        return !this.get(idx).equals(compareNumber)
+                && this.contains(compareNumber);
     }
 
     @Override

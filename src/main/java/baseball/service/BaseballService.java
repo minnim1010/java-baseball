@@ -1,8 +1,9 @@
 package baseball.service;
 
+import baseball.dto.input.BaseballDto;
+import baseball.dto.output.GameResultDto;
 import baseball.model.Baseball;
 import baseball.model.BaseballNumber;
-import baseball.model.GameResult;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -43,7 +44,11 @@ public class BaseballService {
                 .toList();
     }
 
-    public GameResult calculateResult(final Baseball answer, final Baseball guess) {
-        return answer.compareTo(guess);
+    public GameResultDto calculateResult(final Baseball answer, final BaseballDto baseballDto) {
+        Baseball guess = baseballDto.toBaseball();
+
+        int strikeCount = answer.getStrikeCount(guess);
+        int ballCount = answer.getBallCount(guess);
+        return new GameResultDto(strikeCount, ballCount);
     }
 }

@@ -4,8 +4,6 @@ import baseball.dto.input.BaseballDto;
 import baseball.dto.input.ReplayChoiceDto;
 import baseball.dto.output.GameResultDto;
 import baseball.model.Baseball;
-import baseball.model.BaseballGameResultType;
-import baseball.model.GameResult;
 import baseball.model.GameStatus;
 import baseball.service.BaseballService;
 import baseball.view.BaseballView;
@@ -30,31 +28,22 @@ public class BaseballController {
         }
     }
 
+    private static boolean isClear(GameResultDto result) {
+        return result.strikeCount() == Baseball.LENGTH;
+    }
+
     private void playGame() {
         Baseball answer = baseballService.createAnswerBaseball();
 
         boolean isClear = false;
         while (!isClear) {
-            Baseball guess = getGuessBaseball();
-            GameResult result = baseballService.calculateResult(answer, guess);
-            showGameResult(result);
-            isClear = result.isClear();
+            BaseballDto guess = baseballView.inputNumber();
+            GameResultDto result = baseballService.calculateResult(answer, guess);
+            baseballView.showGameResult(result);
+            isClear = isClear(result);
         }
 
         baseballView.clearGame();
-    }
-
-    private Baseball getGuessBaseball() {
-        BaseballDto baseballDto = baseballView.inputNumber();
-        return baseballDto.toBaseball();
-    }
-
-    private void showGameResult(GameResult result) {
-        int strikeCount = result.getCount(BaseballGameResultType.STRIKE);
-        int ballCount = result.getCount(BaseballGameResultType.BALL);
-        GameResultDto gameResultDto = new GameResultDto(strikeCount, ballCount);
-
-        baseballView.showGameResult(gameResultDto);
     }
 
     private boolean askForReplay() {
