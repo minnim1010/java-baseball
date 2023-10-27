@@ -1,4 +1,4 @@
-package baseball.validator;
+package baseball.validator.constants;
 
 import java.util.regex.Pattern;
 

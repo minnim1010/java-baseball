@@ -1,4 +1,4 @@
-package baseball.config;
+package baseball.common.config;
 
 import baseball.controller.BaseballController;
 import baseball.io.InputReader;

@@ -1,6 +1,6 @@
-package baseball.dto.input;
+package baseball.dto;
 
-import baseball.constants.GameStatus;
+import baseball.model.GameStatus;
 import baseball.validator.InputValidator;
 
 public record ReplayDto(String replay) {

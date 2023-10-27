@@ -1,6 +1,6 @@
 package baseball;
 
-import baseball.config.BaseballConfig;
+import baseball.common.config.BaseballConfig;
 import baseball.controller.BaseballController;
 import camp.nextstep.edu.missionutils.Console;
 

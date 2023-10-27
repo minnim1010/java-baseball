@@ -1,10 +1,10 @@
 package baseball.view;
 
-import baseball.constants.Message;
-import baseball.dto.input.BaseballDto;
-import baseball.dto.input.ReplayDto;
+import baseball.dto.BaseballDto;
+import baseball.dto.ReplayDto;
 import baseball.io.InputReader;
 import baseball.io.OutputWriter;
+import baseball.view.constants.Message;
 
 public class BaseballView {
 

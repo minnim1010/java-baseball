@@ -1,6 +1,6 @@
 package baseball.model;
 
-import baseball.constants.Message;
+import baseball.view.constants.Message;
 import java.util.Arrays;
 import java.util.EnumMap;
 

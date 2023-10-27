@@ -1,10 +1,10 @@
-package baseball.dto.input;
+package baseball.dto;
 
 import baseball.model.Baseball;
 import baseball.model.BaseballNumber;
 import baseball.validator.InputValidator;
 import baseball.validator.RegexValidator;
-import baseball.validator.ValidInputPattern;
+import baseball.validator.constants.ValidInputPattern;
 import java.util.Arrays;
 import java.util.List;
 

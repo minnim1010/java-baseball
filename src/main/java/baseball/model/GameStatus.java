@@ -1,4 +1,4 @@
-package baseball.constants;
+package baseball.model;
 
 import java.util.Map;
 import java.util.stream.Collectors;

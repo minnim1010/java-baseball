@@ -1,5 +1,6 @@
 package baseball.validator;
 
+import baseball.validator.constants.ValidInputPattern;
 import java.util.regex.Pattern;
 
 public class RegexValidator {
