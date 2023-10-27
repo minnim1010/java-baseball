@@ -6,24 +6,21 @@ import baseball.dto.input.ReplayDto;
 import baseball.model.Baseball;
 import baseball.model.BaseballGameResult;
 import baseball.service.BaseballService;
-import baseball.view.InputView;
-import baseball.view.OutputView;
+import baseball.view.BaseballView;
 import camp.nextstep.edu.missionutils.Console;
 
 public class BaseballController {
 
-    private final InputView inputView;
-    private final OutputView outputView;
+    private final BaseballView baseballView;
     private final BaseballService baseballService;
 
-    public BaseballController(InputView inputView, OutputView outputView, BaseballService baseballService) {
-        this.inputView = inputView;
-        this.outputView = outputView;
+    public BaseballController(BaseballView baseballView, BaseballService baseballService) {
+        this.baseballView = baseballView;
         this.baseballService = baseballService;
     }
 
     public void run() {
-        outputView.startGame();
+        baseballView.startGame();
 
         boolean play = true;
         while (play) {
@@ -45,20 +42,20 @@ public class BaseballController {
             isClear = result.isClear();
         }
 
-        outputView.clearGame();
+        baseballView.clearGame();
     }
 
     private Baseball getGuessBaseball() {
-        BaseballDto baseballDto = inputView.inputNumber();
+        BaseballDto baseballDto = baseballView.inputNumber();
         return baseballDto.toBaseball();
     }
 
     private void showGameResult(BaseballGameResult result) {
-        outputView.showGameResult(result.getResultMessage());
+        baseballView.showGameResult(result.getResultMessage());
     }
 
     private boolean askReplayChoice() {
-        ReplayDto replayDto = inputView.replayGame();
+        ReplayDto replayDto = baseballView.replayGame();
         GameStatus gameStatus = GameStatus.from(replayDto.replay());
 
         return gameStatus.equals(GameStatus.REPLAY);

@@ -9,12 +9,16 @@ import java.util.List;
 import java.util.Set;
 
 public class BaseballService {
-    public static final BaseballService INSTANCE = new BaseballService();
+
+    private static BaseballService INSTANCE;
 
     private BaseballService() {
     }
 
     public static BaseballService getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new BaseballService();
+        }
         return INSTANCE;
     }
 

@@ -4,21 +4,35 @@ import baseball.controller.BaseballController;
 import baseball.io.InputReader;
 import baseball.io.OutputWriter;
 import baseball.service.BaseballService;
-import baseball.view.InputView;
-import baseball.view.OutputView;
+import baseball.view.BaseballView;
 
 public class BaseballConfig {
-    private static final InputReader inputReader = InputReader.getInstance();
-    private static final OutputWriter outputWriter = OutputWriter.getInstance();
-    private static final BaseballService baseballService = BaseballService.getInstance();
 
     protected BaseballConfig() {
     }
 
-    public static final BaseballController getBaseballController() {
-        InputView inputView = new InputView(inputReader, outputWriter);
-        OutputView outputView = new OutputView(outputWriter);
+    public static BaseballController getBaseballController() {
+        InputReader inputReader = getInputReader();
+        OutputWriter outputWriter = getOutputWriter();
+        BaseballView baseballView = getBaseballView(inputReader, outputWriter);
+        BaseballService baseballService = getBaseballService();
 
-        return new BaseballController(inputView, outputView, baseballService);
+        return new BaseballController(baseballView, baseballService);
+    }
+
+    private static InputReader getInputReader() {
+        return InputReader.getInstance();
+    }
+
+    private static OutputWriter getOutputWriter() {
+        return OutputWriter.getInstance();
+    }
+
+    private static BaseballService getBaseballService() {
+        return BaseballService.getInstance();
+    }
+
+    private static BaseballView getBaseballView(InputReader reader, OutputWriter writer) {
+        return BaseballView.getInstance(reader, writer);
     }
 }
