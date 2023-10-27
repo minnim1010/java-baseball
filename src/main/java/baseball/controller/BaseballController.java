@@ -1,10 +1,10 @@
 package baseball.controller;
 
+import baseball.common.constants.GameStatus;
 import baseball.dto.input.BaseballDto;
 import baseball.dto.input.ReplayChoiceDto;
 import baseball.dto.output.GameResultDto;
 import baseball.model.Baseball;
-import baseball.model.GameStatus;
 import baseball.service.BaseballService;
 import baseball.view.BaseballView;
 

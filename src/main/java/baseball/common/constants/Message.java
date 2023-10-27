@@ -1,4 +1,4 @@
-package baseball.view.constants;
+package baseball.common.constants;
 
 public class Message {
 

@@ -1,4 +1,4 @@
-package baseball.view.constants;
+package baseball.common.constants;
 
 public enum GameResultMessage {
     NOTHING("낫싱"),

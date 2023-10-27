@@ -15,6 +15,7 @@ public class BaseballConfig {
         InputReader inputReader = getInputReader();
         OutputWriter outputWriter = getOutputWriter();
         BaseballView baseballView = getBaseballView(inputReader, outputWriter);
+
         BaseballService baseballService = getBaseballService();
 
         return new BaseballController(baseballView, baseballService);

@@ -1,12 +1,12 @@
 package baseball.view;
 
+import baseball.common.constants.GameResultMessage;
+import baseball.common.constants.Message;
 import baseball.dto.input.BaseballDto;
 import baseball.dto.input.ReplayChoiceDto;
 import baseball.dto.output.GameResultDto;
 import baseball.io.InputReader;
 import baseball.io.OutputWriter;
-import baseball.view.constants.GameResultMessage;
-import baseball.view.constants.Message;
 
 public class BaseballView {
 
@@ -24,10 +24,6 @@ public class BaseballView {
         if (INSTANCE == null) {
             INSTANCE = new BaseballView(reader, writer);
         }
-        return INSTANCE;
-    }
-
-    public static BaseballView getInstance() {
         return INSTANCE;
     }
 
