@@ -24,8 +24,8 @@ public class Baseball {
         return baseballNumbers;
     }
 
-    public BaseballGameResult match(final Baseball compare) {
-        BaseballGameResult result = new BaseballGameResult();
+    public GameResult match(final Baseball compare) {
+        GameResult result = new GameResult();
 
         List<BaseballNumber> compareNumbers = compare.getBaseballNumbers();
         for (int i = 0; i < Baseball.LENGTH; i++) {
@@ -38,7 +38,7 @@ public class Baseball {
         return result;
     }
 
-    private void addResult(BaseballGameResult result, BaseballNumber number, BaseballNumber compareNumber) {
+    private void addResult(GameResult result, BaseballNumber number, BaseballNumber compareNumber) {
         if (isStrike(number, compareNumber)) {
             result.add(BaseballGameResultType.STRIKE);
         } else if (isBall(compareNumber)) {

@@ -1,4 +1,4 @@
-package baseball.dto;
+package baseball.dto.input;
 
 import baseball.common.exception.ErrorMessage;
 import baseball.model.GameStatus;
@@ -7,7 +7,7 @@ import baseball.validator.InputValidator;
 public record ReplayChoiceDto(String replayChoice) {
 
     public ReplayChoiceDto {
-        InputValidator.validate(replayChoice);
+        InputValidator.validateNonBlank(replayChoice);
         validate(replayChoice);
     }
 

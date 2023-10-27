@@ -6,9 +6,9 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mockStatic;
 
 import baseball.model.Baseball;
-import baseball.model.BaseballGameResult;
 import baseball.model.BaseballGameResultType;
 import baseball.model.BaseballNumber;
+import baseball.model.GameResult;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
@@ -86,7 +86,7 @@ class BaseballServiceTest {
         void success(Baseball answer, Baseball guess, int ballCount, int strikeCount) {
             //given
             //when
-            BaseballGameResult result = baseballService.calculateResult(answer, guess);
+            GameResult result = baseballService.calculateResult(answer, guess);
 
             //then
             assertThat(result).isNotNull();

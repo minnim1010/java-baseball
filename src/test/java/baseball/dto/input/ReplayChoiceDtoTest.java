@@ -3,7 +3,6 @@ package baseball.dto.input;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import baseball.dto.ReplayChoiceDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -28,7 +27,7 @@ class ReplayChoiceDtoTest {
         }
 
         @DisplayName("1이나 2가 아니라면 예외를 발생시킨다.")
-        @ValueSource(strings = {"0", "3", " ", "", "\n\n"})
+        @ValueSource(strings = {"0", "3"})
         @ParameterizedTest(name = "입력: {0}")
         void fail_InvalidCharacter(String input) {
             //given

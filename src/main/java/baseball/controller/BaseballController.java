@@ -1,13 +1,14 @@
 package baseball.controller;
 
-import baseball.dto.BaseballDto;
-import baseball.dto.ReplayChoiceDto;
+import baseball.dto.input.BaseballDto;
+import baseball.dto.input.ReplayChoiceDto;
+import baseball.dto.output.GameResultDto;
 import baseball.model.Baseball;
-import baseball.model.BaseballGameResult;
+import baseball.model.BaseballGameResultType;
+import baseball.model.GameResult;
 import baseball.model.GameStatus;
 import baseball.service.BaseballService;
 import baseball.view.BaseballView;
-import camp.nextstep.edu.missionutils.Console;
 
 public class BaseballController {
 
@@ -27,8 +28,6 @@ public class BaseballController {
             playGame();
             play = askReplayChoice();
         }
-
-        releaseResource();
     }
 
     private void playGame() {
@@ -37,7 +36,7 @@ public class BaseballController {
         boolean isClear = false;
         while (!isClear) {
             Baseball guess = getGuessBaseball();
-            BaseballGameResult result = baseballService.calculateResult(answer, guess);
+            GameResult result = baseballService.calculateResult(answer, guess);
             showGameResult(result);
             isClear = result.isClear();
         }
@@ -50,18 +49,17 @@ public class BaseballController {
         return baseballDto.toBaseball();
     }
 
-    private void showGameResult(BaseballGameResult result) {
-        baseballView.showGameResult(result.getResultMessage());
+    private void showGameResult(GameResult result) {
+        int strikeCount = result.getCount(BaseballGameResultType.STRIKE);
+        int ballCount = result.getCount(BaseballGameResultType.BALL);
+        GameResultDto gameResultDto = new GameResultDto(strikeCount, ballCount);
+
+        baseballView.showGameResult(gameResultDto);
     }
 
     private boolean askReplayChoice() {
         ReplayChoiceDto replayChoiceDto = baseballView.replayGame();
-        GameStatus gameStatus = GameStatus.from(replayChoiceDto.replayChoice());
 
-        return gameStatus.equals(GameStatus.REPLAY);
-    }
-
-    private void releaseResource() {
-        Console.close();
+        return GameStatus.isReplay(replayChoiceDto.replayChoice());
     }
 }

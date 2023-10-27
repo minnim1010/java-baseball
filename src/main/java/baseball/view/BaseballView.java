@@ -1,9 +1,11 @@
 package baseball.view;
 
-import baseball.dto.BaseballDto;
-import baseball.dto.ReplayChoiceDto;
+import baseball.dto.input.BaseballDto;
+import baseball.dto.input.ReplayChoiceDto;
+import baseball.dto.output.GameResultDto;
 import baseball.io.InputReader;
 import baseball.io.OutputWriter;
+import baseball.view.constants.GameResultMessage;
 import baseball.view.constants.Message;
 
 public class BaseballView {
@@ -47,7 +49,8 @@ public class BaseballView {
         writer.writeLine(Message.START_GAME);
     }
 
-    public void showGameResult(String gameResult) {
+    public void showGameResult(GameResultDto gameResultDto) {
+        String gameResult = GameResultMessage.getMessage(gameResultDto.strikeCount(), gameResultDto.ballCount());
         writer.writeLine(gameResult);
     }
 

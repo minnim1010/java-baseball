@@ -1,6 +1,7 @@
 package baseball.validator;
 
 import baseball.common.exception.ErrorMessage;
+import baseball.model.Baseball;
 
 public class InputValidator {
 
@@ -8,8 +9,8 @@ public class InputValidator {
     private InputValidator() {
         throw new AssertionError();
     }
-    
-    public static void validate(String message) {
+
+    public static void validateNonBlank(String message) {
         if (isBlank(message)) {
             throw ErrorMessage.BLANK_INPUT.getException();
         }
@@ -17,5 +18,11 @@ public class InputValidator {
 
     private static boolean isBlank(String message) {
         return message == null || message.isBlank();
+    }
+
+    public static void validateSize(int length) {
+        if (length != Baseball.LENGTH) {
+            throw ErrorMessage.INVALID_LENGTH.getException();
+        }
     }
 }

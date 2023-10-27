@@ -24,6 +24,10 @@ public enum GameStatus {
         return statusByCode.get(code);
     }
 
+    public static boolean isReplay(String code) {
+        return code.equals(REPLAY.code);
+    }
+
     public static boolean contains(String code) {
         return statusByCode.containsKey(code);
     }

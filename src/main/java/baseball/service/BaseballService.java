@@ -1,8 +1,8 @@
 package baseball.service;
 
 import baseball.model.Baseball;
-import baseball.model.BaseballGameResult;
 import baseball.model.BaseballNumber;
+import baseball.model.GameResult;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -43,7 +43,7 @@ public class BaseballService {
                 .toList();
     }
 
-    public BaseballGameResult calculateResult(final Baseball answer, final Baseball guess) {
+    public GameResult calculateResult(final Baseball answer, final Baseball guess) {
         return answer.match(guess);
     }
 }

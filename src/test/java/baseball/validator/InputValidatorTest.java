@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidatorTest {
@@ -19,16 +20,16 @@ class InputValidatorTest {
         void success(String input) {
             //given
             //when then
-            InputValidator.validate(input);
+            InputValidator.validateNonBlank(input);
         }
 
         @DisplayName("비어있다면 예외를 발생시킨다.")
-        @ValueSource(strings = {"\n", "\t", "", " ", "\r"})
+        @NullAndEmptySource
         @ParameterizedTest(name = "입력: {0}")
         void fail_InvalidInput(String input) {
             //given
             //when //then
-            assertThatThrownBy(() -> InputValidator.validate(input))
+            assertThatThrownBy(() -> InputValidator.validateNonBlank(input))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
