@@ -28,10 +28,6 @@ public class BaseballController {
         }
     }
 
-    private static boolean isClear(GameResultDto result) {
-        return result.strikeCount() == Baseball.LENGTH;
-    }
-
     private void playGame() {
         Baseball answer = baseballService.createAnswerBaseball();
 
@@ -44,6 +40,10 @@ public class BaseballController {
         }
 
         baseballView.clearGame();
+    }
+
+    private boolean isClear(GameResultDto result) {
+        return result.strikeCount() == Baseball.LENGTH;
     }
 
     private boolean askForReplay() {

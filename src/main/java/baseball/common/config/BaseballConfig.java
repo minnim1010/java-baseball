@@ -1,8 +1,10 @@
 package baseball.common.config;
 
 import baseball.controller.BaseballController;
-import baseball.io.InputReader;
-import baseball.io.OutputWriter;
+import baseball.io.reader.CommandLineReader;
+import baseball.io.reader.Reader;
+import baseball.io.writer.CommandLineWriter;
+import baseball.io.writer.Writer;
 import baseball.service.BaseballService;
 import baseball.view.BaseballView;
 
@@ -12,28 +14,28 @@ public class BaseballConfig {
     }
 
     public static BaseballController getBaseballController() {
-        InputReader inputReader = getInputReader();
-        OutputWriter outputWriter = getOutputWriter();
-        BaseballView baseballView = getBaseballView(inputReader, outputWriter);
+        Reader reader = getCommandLineReader();
+        Writer writer = getCommandLineWriter();
+        BaseballView baseballView = getBaseballView(reader, writer);
 
         BaseballService baseballService = getBaseballService();
 
         return new BaseballController(baseballView, baseballService);
     }
 
-    private static InputReader getInputReader() {
-        return InputReader.getInstance();
+    private static CommandLineReader getCommandLineReader() {
+        return CommandLineReader.getInstance();
     }
 
-    private static OutputWriter getOutputWriter() {
-        return OutputWriter.getInstance();
+    private static CommandLineWriter getCommandLineWriter() {
+        return CommandLineWriter.getInstance();
     }
 
     private static BaseballService getBaseballService() {
         return BaseballService.getInstance();
     }
 
-    private static BaseballView getBaseballView(InputReader reader, OutputWriter writer) {
+    private static BaseballView getBaseballView(Reader reader, Writer writer) {
         return BaseballView.getInstance(reader, writer);
     }
 }

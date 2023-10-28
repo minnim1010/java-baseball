@@ -5,44 +5,35 @@ import baseball.common.constants.Message;
 import baseball.dto.input.BaseballDto;
 import baseball.dto.input.ReplayChoiceDto;
 import baseball.dto.output.GameResultDto;
-import baseball.io.InputReader;
-import baseball.io.OutputWriter;
+import baseball.io.reader.Reader;
+import baseball.io.writer.Writer;
 
 public class BaseballView {
 
     private static BaseballView INSTANCE;
 
-    private final InputReader reader;
-    private final OutputWriter writer;
+    private final Reader reader;
+    private final Writer writer;
 
-    private BaseballView(InputReader reader, OutputWriter writer) {
+    private BaseballView(Reader reader, Writer writer) {
         this.reader = reader;
         this.writer = writer;
     }
 
-    public static BaseballView getInstance(InputReader reader, OutputWriter writer) {
+    public static BaseballView getInstance(Reader reader, Writer writer) {
         if (INSTANCE == null) {
             INSTANCE = new BaseballView(reader, writer);
         }
         return INSTANCE;
     }
 
-    public BaseballDto inputNumber() {
-        writer.write(Message.INPUT_NUMBER);
-
-        String input = reader.readLine();
-        return new BaseballDto(input);
-    }
-
-    public ReplayChoiceDto replayGame() {
-        writer.writeLine(Message.INPUT_REPLAY);
-
-        String input = reader.readLine();
-        return new ReplayChoiceDto(input);
-    }
-
     public void startGame() {
         writer.writeLine(Message.START_GAME);
+    }
+
+    public BaseballDto inputNumber() {
+        writer.write(Message.INPUT_NUMBER);
+        return new BaseballDto(reader.readLine());
     }
 
     public void showGameResult(GameResultDto gameResultDto) {
@@ -52,5 +43,10 @@ public class BaseballView {
 
     public void clearGame() {
         writer.writeLine(Message.GAME_CLEAR);
+    }
+
+    public ReplayChoiceDto replayGame() {
+        writer.writeLine(Message.INPUT_REPLAY);
+        return new ReplayChoiceDto(reader.readLine());
     }
 }
