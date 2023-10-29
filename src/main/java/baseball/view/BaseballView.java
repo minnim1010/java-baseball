@@ -10,21 +10,12 @@ import baseball.io.writer.Writer;
 
 public class BaseballView {
 
-    private static BaseballView INSTANCE;
-
     private final Reader reader;
     private final Writer writer;
 
-    private BaseballView(Reader reader, Writer writer) {
+    public BaseballView(Reader reader, Writer writer) {
         this.reader = reader;
         this.writer = writer;
-    }
-
-    public static BaseballView getInstance(Reader reader, Writer writer) {
-        if (INSTANCE == null) {
-            INSTANCE = new BaseballView(reader, writer);
-        }
-        return INSTANCE;
     }
 
     public void startGame() {

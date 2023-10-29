@@ -13,20 +13,20 @@ public class BaseballConfig {
     }
 
     public static BaseballController getBaseballController() {
-        Reader reader = getCommandLineReader();
-        Writer writer = getCommandLineWriter();
+        Reader reader = getReader();
+        Writer writer = getWriter();
         return new BaseballController(getBaseballView(reader, writer));
     }
 
-    private static CommandLineReader getCommandLineReader() {
-        return CommandLineReader.getInstance();
+    private static Reader getReader() {
+        return new CommandLineReader();
     }
 
-    private static CommandLineWriter getCommandLineWriter() {
-        return CommandLineWriter.getInstance();
+    private static Writer getWriter() {
+        return new CommandLineWriter();
     }
 
     private static BaseballView getBaseballView(Reader reader, Writer writer) {
-        return BaseballView.getInstance(reader, writer);
+        return new BaseballView(reader, writer);
     }
 }
