@@ -32,7 +32,7 @@ public class BaseballService {
 
     private static List<BaseballNumber> convertUniqueBaseballNumbers(Set<Integer> uniqueNumbers) {
         return uniqueNumbers.stream()
-                .map(BaseballNumber::new)
+                .map(BaseballNumber::from)
                 .toList();
     }
 

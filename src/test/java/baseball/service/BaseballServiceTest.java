@@ -41,7 +41,7 @@ class BaseballServiceTest {
 
     private static Baseball createBaseball(Integer... input) {
         List<BaseballNumber> list = Arrays.stream(input)
-                .map(BaseballNumber::new)
+                .map(BaseballNumber::from)
                 .toList();
         return Baseball.from(list);
     }

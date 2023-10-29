@@ -16,7 +16,7 @@ class BaseballTest {
 
     private static List<BaseballNumber> getBaseNumberList(Integer... input) {
         return Arrays.stream(input)
-                .map(BaseballNumber::new)
+                .map(BaseballNumber::from)
                 .toList();
     }
 

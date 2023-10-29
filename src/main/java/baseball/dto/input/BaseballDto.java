@@ -19,7 +19,7 @@ public record BaseballDto(String baseball) {
 
         List<BaseballNumber> baseballNumbers = Arrays.stream(splits)
                 .map(Integer::parseInt)
-                .map(BaseballNumber::new)
+                .map(BaseballNumber::from)
                 .toList();
 
         return Baseball.from(baseballNumbers);
