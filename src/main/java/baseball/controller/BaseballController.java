@@ -5,17 +5,14 @@ import baseball.dto.input.BaseballDto;
 import baseball.dto.input.ReplayChoiceDto;
 import baseball.dto.output.GameResultDto;
 import baseball.model.Baseball;
-import baseball.service.BaseballService;
 import baseball.view.BaseballView;
 
 public class BaseballController {
 
     private final BaseballView baseballView;
-    private final BaseballService baseballService;
 
-    public BaseballController(BaseballView baseballView, BaseballService baseballService) {
+    public BaseballController(BaseballView baseballView) {
         this.baseballView = baseballView;
-        this.baseballService = baseballService;
     }
 
     public void run() {
@@ -29,12 +26,12 @@ public class BaseballController {
     }
 
     private void playGame() {
-        Baseball answer = baseballService.createAnswerBaseball();
+        Baseball answer = BaseballService.createAnswerBaseball();
 
         boolean isClear = false;
         while (!isClear) {
             BaseballDto guess = baseballView.inputNumber();
-            GameResultDto result = baseballService.calculateResult(answer, guess);
+            GameResultDto result = BaseballService.calculateResult(answer, guess);
             baseballView.showGameResult(result);
             isClear = isClear(result);
         }

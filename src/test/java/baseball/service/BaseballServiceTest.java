@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mockStatic;
 
+import baseball.controller.BaseballService;
 import baseball.dto.input.BaseballDto;
 import baseball.dto.output.GameResultDto;
 import baseball.model.Baseball;
@@ -27,7 +28,6 @@ import org.mockito.MockedStatic;
 class BaseballServiceTest {
 
     private static MockedStatic<Randoms> randoms;
-    private final BaseballService baseballService = BaseballService.getInstance();
 
     @BeforeAll
     static void beforeAll() {
@@ -57,7 +57,7 @@ class BaseballServiceTest {
             given(Randoms.pickNumberInRange(anyInt(), anyInt())).willReturn(5, 1, 1, 2, 2);
 
             //when
-            Baseball answerBaseball = baseballService.createAnswerBaseball();
+            Baseball answerBaseball = BaseballService.createAnswerBaseball();
 
             //then
             assertThat(answerBaseball).isNotNull();
@@ -90,7 +90,7 @@ class BaseballServiceTest {
         void success(Baseball answer, BaseballDto guess, int ballCount, int strikeCount) {
             //given
             //when
-            GameResultDto gameResultDto = baseballService.calculateResult(answer, guess);
+            GameResultDto gameResultDto = BaseballService.calculateResult(answer, guess);
 
             //then
             assertThat(gameResultDto).isNotNull();

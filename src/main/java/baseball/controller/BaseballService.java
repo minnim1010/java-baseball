@@ -1,4 +1,4 @@
-package baseball.service;
+package baseball.controller;
 
 import baseball.dto.input.BaseballDto;
 import baseball.dto.output.GameResultDto;
@@ -11,25 +11,17 @@ import java.util.Set;
 
 public class BaseballService {
 
-    private static BaseballService INSTANCE;
-
     private BaseballService() {
+        throw new AssertionError();
     }
 
-    public static BaseballService getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new BaseballService();
-        }
-        return INSTANCE;
-    }
-
-    public Baseball createAnswerBaseball() {
+    public static Baseball createAnswerBaseball() {
         Set<Integer> uniqueNumbers = getUniqueNumbers();
         List<BaseballNumber> baseballNumbers = convertUniqueBaseballNumbers(uniqueNumbers);
         return Baseball.from(baseballNumbers);
     }
 
-    private Set<Integer> getUniqueNumbers() {
+    private static Set<Integer> getUniqueNumbers() {
         Set<Integer> uniqueNumbers = new LinkedHashSet<>();
         while (uniqueNumbers.size() < Baseball.LENGTH) {
             int uniqueNumber = Randoms.pickNumberInRange(BaseballNumber.MIN_VALUE, BaseballNumber.MAX_VALUE);
@@ -38,13 +30,13 @@ public class BaseballService {
         return uniqueNumbers;
     }
 
-    private List<BaseballNumber> convertUniqueBaseballNumbers(Set<Integer> uniqueNumbers) {
+    private static List<BaseballNumber> convertUniqueBaseballNumbers(Set<Integer> uniqueNumbers) {
         return uniqueNumbers.stream()
                 .map(BaseballNumber::new)
                 .toList();
     }
 
-    public GameResultDto calculateResult(final Baseball answer, final BaseballDto baseballDto) {
+    public static GameResultDto calculateResult(final Baseball answer, final BaseballDto baseballDto) {
         Baseball guess = baseballDto.toBaseball();
 
         int strikeCount = answer.getStrikeCount(guess);
